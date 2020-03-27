@@ -1,8 +1,8 @@
-# Strimzi Training
+# AMQ Streams / Strimzi Training
 
-## Lab 1 - Deploying and using Strimzi
+## Lab 1 - Deploying and using AMQ Streams / Strimzi
 
-Lab 1 focuses on deploying and using Strimzi. The lab can be found [here](./lab-1/).
+Lab 1 focuses on deploying and using AMQ Streams / Strimzi. The lab can be found [here](./lab-1/).
 
 ## Lab 2 - Deployment configuration
 

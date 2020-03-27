@@ -1,4 +1,4 @@
-# Strimzi Training - Lab 1
+# AMQ Streams / Strimzi Training - Lab 1
 
 * Open the file `examples/kafka/kafka-persistent.yaml` and get familiar with it
 * Deploy the Kafka cluster in one of the namespaces which the Cluster Operator is watching
@@ -56,3 +56,4 @@ to:
   * Wait for the pod to restart and check it gets an _authorization error_ using `oc logs $(oc get pod -l app=hello-world-producer -o=jsonpath='{.items[0].metadata.name}') -f`
   * Edit the KafkaUser resource with `oc edit kafkauser my-user` and update the access rights to allow it to use the new topic
   * Check the logs again to see how it is now authorized to produce to the new topic
+* Clean up your kafka cluster: using `oc delete kafka my-cluster`

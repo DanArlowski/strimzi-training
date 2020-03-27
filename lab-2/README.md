@@ -1,18 +1,4 @@
-# Strimzi Training - Lab 2
-
-Lab 2 is using Strimzi 0.6.0-rc1. It takes you through different configuration aspect of Strimzi deployments
-
-* Checkout this repository which will be used during the lab:
-  * `git clone https://github.com/scholzj/strimzi-training.git`
-* Go to the `lab-2` directory
-  * `cd lab-2`
-* Start you OpenShift cluster
-  * You should use OpenShift 3.9 or higher
-  * Run `minishift start` or `oc cluster up`
-* Login as cluster administrator
-  * `oc login -u system:admin`
-* Install the Cluster Operator
-  * `oc apply -f install/`
+# AMQ Streams / Strimzi Training - Lab 2
 
 ## Replicas
 
@@ -39,9 +25,6 @@ Lab 2 is using Strimzi 0.6.0-rc1. It takes you through different configuration a
 * Observe how the scaling works
   * Pods `my-cluster-kafka-3` and `my-cluster-kafka-4` will be deleted
   * Notice that AMQ Streams removes the pod one by one, not both at the same time
-* Go to the OpenShift webconsole
-* Select the Kafka Connect deployment and scale it form 1 to 3 replicas
-* Watch how OpenShift tries to scale the application but how the Cluster Operator scales it down in the next reconciliation loop
 * Try to scale Kafka connect up and down using `oc edit kafkaconnect my-connect-cluster` and see that this was it works
 * Observe which pods are created and deleted
 * Delete the deployments
@@ -122,7 +105,7 @@ initLimit=5
 
 ```yaml
     config:
-      broker.id: 10
+      broker.id: 0
       num.partitions: 1
       num.recovery.threads.per.data.dir: 1
       default.replication.factor: 3
@@ -143,9 +126,7 @@ initLimit=5
 * Wait for the rolling update to complete
 * Check the Kafka pod logs using `oc logs my-cluster-kafka-0 -c kafka` or in the OpenShift webconsole
   * On the beginning of the log you will see the broker configuration printed
-  * Check that the values were updated, but the option `broker.id=10` is missing because it is forbidden
-  * Check Cluster Operator logs to see the warning about forbidden option
-    * `oc logs $(oc get pod -l name=strimzi-cluster-operator -o=jsonpath='{.items[0].metadata.name}') | grep WARN`
+  * Check that the values were updated
 * Delete the deployments
   * `oc delete kafka my-cluster`
 
@@ -182,7 +163,7 @@ spec:
 ```
 
 * Check Cluster Operator logs to see the warning about forbidden option
-  * `oc logs $(oc get pod -l name=strimzi-cluster-operator -o=jsonpath='{.items[0].metadata.name}') | grep WARN`
+  * `oc logs $(oc get pod -l name=amq-streams-cluster-operator -o=jsonpath='{.items[0].metadata.name}') | grep WARN`
   * The warning will repeat until you revert the storage change
 * Check that no rolling update and no storage change happens!
 * Delete the deployments
@@ -190,101 +171,5 @@ spec:
 * Check that the PVs and PVCs used by the pods are still there after we deleted the deployment
   * `oc get pv`
   * `oc get pvc`
-
-## Entity Operator
-
-* Add new project / namespace but keep the old project as default
-  * `oc new-project myproject2 --display-name="My Project 2"`
-  * `oc project myproject`
-* Open `entity-operator/kafka.yaml` and check the missing `entityOperator` property
-* Deploy the Kafka cluster and wait until it is deployed
-  * `oc apply -f entity-operator/kafka.yaml`
-* The cluster will be deployed, but the Entity Operator will be missing
-* Edit the Kafka resource and add `entityOperator` as in the example below with enabled Topic Operator:
-
-```yaml
-apiVersion: kafka.strimzi.io/v1alpha1
-kind: Kafka
-metadata:
-  name: my-cluster
-spec:
-  kafka:
-    replicas: 3
-    storage:
-      type: ephemeral
-    listeners:
-      plain: {}
-      tls: {}
-  zookeeper:
-    replicas: 3
-    storage:
-      type: ephemeral
-  entityOperator:
-    topicOperator: {}
-```
-
-* Wait for the update to finish and check that the Entity Operator is now deployed
-  * It should contain 2 containers ... the TLS sidecar and the Topic Operator
-* Edit the Kafka resource and add `entityOperator` as in the example below with enabled Topic Operator:
-
-```yaml
-apiVersion: kafka.strimzi.io/v1alpha1
-kind: Kafka
-metadata:
-  name: my-cluster
-spec:
-  kafka:
-    replicas: 3
-    storage:
-      type: ephemeral
-    listeners:
-      plain: {}
-      tls: {}
-  zookeeper:
-    replicas: 3
-    storage:
-      type: ephemeral
-  entityOperator:
-    topicOperator: {}
-    userOperator: {}
-```
-
-* Wait for the update to finish and check that the Entity Operator has been re-deployed
-  * It should contain 3 containers ... the TLS sidecar, the Topic Operator, and the User Operator
-* Check the Entity Operator deplyoment in OpenShift web console
-  * Check the environment variables which contain the default values
-* Edit the Kafka resource and once again change `entityOperator` property as in the example and add some more confgiuration options:
-
-```yaml
-apiVersion: kafka.strimzi.io/v1alpha1
-kind: Kafka
-metadata:
-  name: my-cluster
-spec:
-  kafka:
-    replicas: 3
-    storage:
-      type: ephemeral
-    listeners:
-      plain: {}
-      tls: {}
-  zookeeper:
-    replicas: 3
-    storage:
-      type: ephemeral
-  entityOperator:
-    topicOperator:
-      watchedNamespace: myproject2
-      reconciliationIntervalSeconds: 30
-      zookeeperSessionTimeoutSeconds: 10
-      topicMetadataMaxAttempts: 10
-    userOperator:
-      watchedNamespace: myproject2
-      reconciliationIntervalSeconds: 30
-      zookeeperSessionTimeoutSeconds: 10
-```
-
-* Check the Entity Operator deplyoment in OpenShift web console again
-  * Verify that all values have been updated
-* Delete the deployments
-  * `oc delete kafka my-cluster`
+* Delete pvc
+  * `oc delete pvc -l strimzi.io/cluster=my-cluster -n amqstreams-demo`
