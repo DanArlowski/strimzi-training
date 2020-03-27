@@ -1,25 +1,12 @@
-# Strimzi Training - Lab 6
+# AMQ Streams / Strimzi Training - Lab 5
 
-Lab 6 is using Strimzi 0.6.0. It takes you through different aspects of monitoring Strimzi.
-
-* Checkout this repository which will be used during the lab:
-  * `git clone https://github.com/scholzj/strimzi-training.git`
-* Go to the `lab-6` directory
-  * `cd lab-6`
-* Start you OpenShift cluster
-  * You should use OpenShift 3.9 or higher
-  * Run `minishift start` or `oc cluster up`
-* Login as cluster administrator
-  * `oc login -u system:admin`
-* Install the Cluster Operator
-  * `oc apply -f install/`
 * Install the Kafka cluster
   * `oc apply -f kafka.yaml`
 
 ## Cluster Operator Logging
 
 * Edit the Cluster Operator deployment
-  * `oc edit deployment strimzi-cluster-operator`
+  * `oc edit deployment amq-streams-cluster-operator-v1.4.0`
   * And change the log level:
 
 ```yaml
@@ -64,7 +51,7 @@ spec:
   * Change the Kafka log levels. For example
 
 ```yaml
-apiVersion: kafka.strimzi.io/v1alpha1
+apiVersion: kafka.strimzi.io/v1beta1
 kind: Kafka
 spec:
   kafka:
@@ -78,3 +65,6 @@ spec:
 * Wait for the rolling update of Kafka brokers to finish
 * Check that the logging configuration has been updated
 * _On your own: Try to configure log levels using config map also in other componenets_
+* Delete the deployments
+  * `oc delete kafkaconnect my-connect-cluster`
+  * `oc delete kafka my-cluster`

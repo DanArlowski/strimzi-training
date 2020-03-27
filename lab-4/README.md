@@ -70,6 +70,8 @@
 
 * Check the `kafka.yaml` and `connect.yaml` files
   * Check the metrics configuration in the `metrics` fields
+* In file `prometheus/prometheus.yaml` change 
+  myproject with amqstreams-demo-<userXX>
 * Deploy Prometheus and Grafana installation
   * `oc apply -f prometheus/`
 * Open Grafana on address[http://grafana-myproject.127.0.0.1.nip.io](http://grafana-myproject.127.0.0.1.nip.io)
@@ -97,3 +99,9 @@
     * In the _General_ tab change the title to _Bytes In Per Second: my-topic_
     * In the _Metrics_ change the query to `sum(kafka_server_brokertopicmetrics_bytesinpersec_topic_my_topic)`
     * _On you own: Try to do this for other topics and find out which topic generates most trafic_
+  * Delete the deployments
+    * `oc delete kafkaconnect my-connect-cluster`
+    * `oc delete kafka my-cluster`
+  * Delete producer and consumer
+    * `oc delete all -l app=hello-world-producer -n amqstreams-demo`
+    * `oc delete all -l app=hello-world-consumer -n amqstreams-demo`
