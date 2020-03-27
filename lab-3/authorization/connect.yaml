@@ -1,4 +1,4 @@
-apiVersion: kafka.strimzi.io/v1alpha1
+apiVersion: kafka.strimzi.io/v1beta1
 kind: KafkaUser
 metadata:
   name: my-connect
@@ -89,7 +89,7 @@ spec:
           name: connect-cluster-offsets
         operation: Create
 ---
-apiVersion: kafka.strimzi.io/v1alpha1
+apiVersion: kafka.strimzi.io/v1beta1
 kind: KafkaConnect
 metadata:
   name: my-connect-cluster

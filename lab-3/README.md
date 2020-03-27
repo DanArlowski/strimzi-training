@@ -1,20 +1,4 @@
-# Strimzi Training - Lab 3
-
-Lab 3 is using Strimzi 0.6.0. It takes you through the topic and user management.
-
-* Checkout this repository which will be used during the lab:
-  * `git clone https://github.com/scholzj/strimzi-training.git`
-* Go to the `lab-3` directory
-  * `cd lab-3`
-* Start you OpenShift cluster
-  * You should use OpenShift 3.9 or higher
-  * Run `minishift start` or `oc cluster up`
-* Login as cluster administrator
-  * `oc login -u system:admin`
-* Create a new project
-  * `oc new-project myproject`
-* Install the Cluster Operator
-  * `oc apply -f install/`
+# AMQ Streams / Strimzi Training - Lab 3
 
 ## Plain connections
 
@@ -303,3 +287,6 @@ and
 * After the rolling update of Kafka Connect is complete, you can check that the connector we deployed works again
   * `oc exec -ti $(oc get pod -l app=my-connect-cluster -o=jsonpath='{.items[0].metadata.name}') -- tail -f /tmp/test.sink.txt`
 * _On your own: Try to modify the deployment to set `my-connect` user as super user_
+* Delete the deployments
+  * `oc delete kafkaconnect my-connect-cluster`
+  * `oc delete kafka my-cluster`
