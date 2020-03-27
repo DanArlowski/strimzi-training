@@ -1,18 +1,5 @@
-# Strimzi Training - Lab 5
+# AMQ Streams / Strimzi Training - Lab 4
 
-Lab 5 is using Strimzi 0.6.0. It takes you through different aspects of monitoring Strimzi.
-
-* Checkout this repository which will be used during the lab:
-  * `git clone https://github.com/scholzj/strimzi-training.git`
-* Go to the `lab-5` directory
-  * `cd lab-5`
-* Start you OpenShift cluster
-  * You should use OpenShift 3.9 or higher
-  * Run `minishift start` or `oc cluster up`
-* Login as cluster administrator
-  * `oc login -u system:admin`
-* Install the Cluster Operator
-  * `oc apply -f install/`
 * Install the Kafka cluster
   * `oc apply -f kafka.yaml`
 * Install the Hello World application

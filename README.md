@@ -12,9 +12,9 @@ Lab 2 focuses on different options for configuring the deployments. The lab can 
 
 Lab 3 focuses on topic and user management, authentication and authorization. The lab can be found [here](./lab-3/).
 
-## Lab 5 - Monitoring
+## Lab 4 - Monitoring
 
-Lab 5 focuses on Command line tools, Monitoring and Promethues. The lab can be found [here](./lab-5/).
+Lab 4 focuses on Command line tools, Monitoring and Promethues. The lab can be found [here](./lab-4/).
 
 ## Lab 6 - Troubleshooting
 

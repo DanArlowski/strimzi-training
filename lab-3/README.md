@@ -290,3 +290,6 @@ and
 * Delete the deployments
   * `oc delete kafkaconnect my-connect-cluster`
   * `oc delete kafka my-cluster`
+* Delete producer and consumer
+  * `oc delete all -l app=hello-world-producer -n amqstreams-demo`
+  * `oc delete all -l app=hello-world-consumer -n amqstreams-demo`
