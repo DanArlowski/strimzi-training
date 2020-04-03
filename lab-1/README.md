@@ -58,5 +58,5 @@ to:
   * Check the logs again to see how it is now authorized to produce to the new topic
 * Clean up your kafka cluster: using `oc delete kafka my-cluster`
 * Delete producer and consumer
-  * `oc delete all -l app=hello-world-producer -n amqstreams-demo`
-  * `oc delete all -l app=hello-world-consumer -n amqstreams-demo`
+  * `oc delete all -l app=hello-world-producer`
+  * `oc delete all -l app=hello-world-consumer`
