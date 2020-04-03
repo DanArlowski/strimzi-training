@@ -12,7 +12,6 @@
   * `oc get pods`
 * Edit the Kafka cluster and scale-up the Kafka brokers
   * `oc edit kafka my-cluster`
-  * Change the resources for Kafka broker to very large number. Foŕ example change the memory request and limit for Kafka broker to 20GB.
 
 ```yaml
   kafka:
