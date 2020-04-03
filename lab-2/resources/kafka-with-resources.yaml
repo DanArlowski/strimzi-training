@@ -51,7 +51,7 @@ spec:
           memory: 128Mi
           cpu: 100m
         limits:
-          memory: 128Mi
+          memory: 256Mi
           cpu: 500m
     userOperator:
       resources:
@@ -59,7 +59,7 @@ spec:
           memory: 128Mi
           cpu: 100m
         limits:
-          memory: 128Mi
+          memory: 256Mi
           cpu: 500m
     tlsSidecar:
       resources:
