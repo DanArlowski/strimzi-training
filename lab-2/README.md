@@ -171,4 +171,4 @@ spec:
   * `oc get pv`
   * `oc get pvc`
 * Delete pvc
-  * `oc delete pvc -l strimzi.io/cluster=my-cluster -n amqstreams-demo`
+  * `oc delete pvc -l strimzi.io/cluster=my-cluster`
