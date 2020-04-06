@@ -74,7 +74,7 @@
 * Open `configuration/kafka.yaml` and have a look at the configuration option used there for Apache Kafka
 * Deploy the Kafka cluster and wait until it is deployed
   * `oc apply -f configuration/kafka.yaml`
-* Check the Kafka pod logs using `oc logs my-cluster-kafka-0 -c kafka` or in the OpenShift webconsole
+* Check the Kafka pod logs using `oc logs my-cluster-kafka-0 -c kafka | more` or in the OpenShift webconsole
   * On the beginning of the log you will see the broker configuration printed
   * Check that it contains the values form the `Kafka` resource
   * Notice also the other options configured by AMQ Streams
@@ -87,7 +87,7 @@ offsets.topic.replication.factor=3
 transaction.state.log.min.isr=1
 ```
 
-* Check the Zookeeper pod logs using `oc logs my-cluster-zookeeper-0 -c zookeeper` or in the OpenShift webconsole
+* Check the Zookeeper pod logs using `oc logs my-cluster-zookeeper-0 -c zookeeper | more` or in the OpenShift webconsole
   * On the beginning of the log you will see the node configuration printed
   * Check that although you didn't specify any values in the `Kafka` resource, the default values are there
   * Notice also the other options configured by AMQ Streams
@@ -123,7 +123,7 @@ initLimit=5
 ```
 
 * Wait for the rolling update to complete
-* Check the Kafka pod logs using `oc logs my-cluster-kafka-0 -c kafka` or in the OpenShift webconsole
+* Check the Kafka pod logs using `oc logs my-cluster-kafka-0 -c kafka | more` or in the OpenShift webconsole
   * On the beginning of the log you will see the broker configuration printed
   * Check that the values were updated
 * Delete the deployments
