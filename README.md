@@ -27,3 +27,7 @@ Lab 7 focuses on External Listeners. The lab can be found [here](./lab-6/).
 ## Lab 7 - Mirror Maker v1
 
 Lab 7 focuses on Mirror Maker v1. The lab can be found [here](./lab-7/).
+
+## Lab 8 - Custom Deployments and Jbod
+
+Lab 8 focuses on Custom Deployments and Jbod. The lab can be found [here](./lab-8/).
