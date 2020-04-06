@@ -31,3 +31,7 @@ Lab 7 focuses on Mirror Maker v1. The lab can be found [here](./lab-7/).
 ## Lab 8 - Custom Deployments and Jbod
 
 Lab 8 focuses on Custom Deployments and Jbod. The lab can be found [here](./lab-8/).
+
+## Lab 9 - HTTP bridge and Debezium
+
+Lab 8 focuses on HTTP bridge and Debezium. The lab can be found [here](./lab-9/).

@@ -2,11 +2,11 @@
 
 * Open the file `examples/kafka/kafka-persistent.yaml` and get familiar with it
 * Deploy the Kafka cluster in one of the namespaces which the Cluster Operator is watching
-  * `oc apply -f examples/kafka/kafka-persistent.yaml -n amqstreams-demo-<userXX>`
+  * `oc apply -f examples/kafka/kafka-persistent.yaml`
 * Watch as the Kafka cluster is deployed (3 zookeeper,3 kafka broker and my-cluster-entity-operator)
   * Using the OpenShift webconsole
   * Using the command line
-    * `oc -n amqstreams-demo-<userXX> get pods -l strimzi.io/cluster=my-cluster -w`
+    * `oc get pods -l strimzi.io/cluster=my-cluster -w`
 * Edit the Kafka cluster:
   * From the command line do `oc edit kafka my-cluster` and change the following section to enable TLS client authentication and authorization for kafka. Change it from:
 
