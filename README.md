@@ -19,3 +19,7 @@ Lab 4 focuses on Command line tools, Monitoring and Promethues. The lab can be f
 ## Lab 5 - Logging
 
 Lab 5 focuses on Logging. The lab can be found [here](./lab-5/).
+
+## Lab 6 - Mirror Maker v1
+
+Lab 6 focuses on Mirror Maker v1. The lab can be found [here](./lab-6/).
