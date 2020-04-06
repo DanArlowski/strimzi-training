@@ -4,6 +4,7 @@ metadata:
   name: my-producer
   labels:
     strimzi.io/cluster: my-cluster
+    app: hello-world-producer
 spec:
   authentication:
     type: tls

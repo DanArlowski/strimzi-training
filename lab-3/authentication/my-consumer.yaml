@@ -4,6 +4,7 @@ metadata:
   name: my-consumer
   labels:
     strimzi.io/cluster: my-cluster
+    app: hello-world-consumer
 spec:
   authentication:
     type: tls
