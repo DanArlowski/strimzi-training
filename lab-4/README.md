@@ -107,10 +107,10 @@
     * `oc delete kafkaconnect my-connect-cluster`
     * `oc delete kafka my-cluster`
   * Delete producer and consumer
-    * `oc delete all -l app=hello-world-producer -n amqstreams-demo`
-    * `oc delete all -l app=hello-world-consumer -n amqstreams-demo`
+    * `oc delete all -l app=hello-world-producer`
+    * `oc delete all -l app=hello-world-consumer`
   * Delete grafana and prometheus
-    * `oc delete all -l name=grafana -n amqstreams-demo`
-    * `oc delete all -l name=prometheus -n amqstreams-demo`
-    * `oc delete all -l name=prometheus-server -n amqstreams-demo`
-    * `oc delete all -l name=prometheus-config -n amqstreams-demo`
+    * `oc delete all -l name=grafana`
+    * `oc delete all -l name=prometheus`
+    * `oc delete all -l name=prometheus-server`
+    * `oc delete all -l name=prometheus-config`
