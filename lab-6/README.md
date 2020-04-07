@@ -62,7 +62,7 @@ _Note: This will work only on OpenShift installations where the nodes are access
 * The CA public key didn't changed, so you can sue the `truststore` file from previous section
 * Run the clients locally on your PC
   * Run the producer:  
-    * Find the address of your node `oc get node localhost -o=jsonpath='{range .status.addresses[*]}{.type}{"\t"}{.address}{"\n"}'`
+    * Find the address of your node `oc get node <worker-node-name> -o=jsonpath='{range .status.addresses[*]}{.type}{"\t"}{.address}{"\n"}'`
       * For the bootstrap service you can sue whatever node of your cluster
       * The addresses are used in the following order: ExternalDNS, ExternalIP, InternalDNS, InternalIP, Hostname
     * Find the port where Kafka is listening `oc get service my-cluster-kafka-external-bootstrap -o=jsonpath='{.spec.ports[0].nodePort}{"\n"}'`
