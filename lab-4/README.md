@@ -74,7 +74,7 @@
   myproject with amqstreams-demo-<userXX>
 * Deploy Prometheus and Grafana installation
   * `oc apply -f prometheus/`
-* Open Grafana on address[http://grafana-myproject.127.0.0.1.nip.io](http://grafana-myproject.127.0.0.1.nip.io)
+* Open Grafana on address (check the Grafana route): 
   * Login with username `admin` and password `admin`
   * Click the _Add data source_ button
   * Add new data source with following options:
