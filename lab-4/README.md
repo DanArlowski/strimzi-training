@@ -74,7 +74,8 @@
   myproject with amqstreams-demo-<userXX>
 * Deploy Prometheus and Grafana installation
   * `oc apply -f prometheus/`
-* Open Grafana on address (check the Grafana route): 
+* Open Grafana: 
+  * Check the address with the command: `oc get routes grafana -ojsonpath='{.status.ingress[0].host}'`
   * Login with username `admin` and password `admin`
   * Click the _Add data source_ button
   * Add new data source with following options:
@@ -88,6 +89,9 @@
     * These show metrics of how Prometheus scrapes the Kafka metrics
   * Click the icon in the top left corner and select _Dashboards_ and _Import_
     * In the import window, select the `dashboard.json` file from this directory and `Prometheus` as the data source and import it
+    * Optionally: import the latest dashboard definitions from Strimzi:
+        * Kafka dashboard: https://github.com/strimzi/strimzi-kafka-operator/blob/master/examples/metrics/grafana-dashboards/strimzi-kafka.json
+        * Zookeeper dashboard: https://github.com/strimzi/strimzi-kafka-operator/blob/master/examples/metrics/grafana-dashboards/strimzi-zookeeper.json
     * Select the _Kafka Dashboard_ and have a look at the metrics
   * Play with the Kafka components and watch how it reflects ni the metrics. For example:
     * Scale the consumer down to 0 using `oc scale deployment hello-world-consumer --replicas=0`
