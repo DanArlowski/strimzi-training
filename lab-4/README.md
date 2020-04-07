@@ -55,16 +55,16 @@
   * `oc apply -f connect.yaml`
   * The deployment also created an OpenShift Route for the Kafka Connect REST API
 * Deploy the FileSink connetor from your local command line:
-  * `curl -X POST -H "Content-Type: application/json" --data '{ "name": "sink-test", "config": { "connector.class": "FileStreamSink", "tasks.max": "1", "topics": "my-topic", "file": "/tmp/test.sink.txt" } }' http://my-connect-cluster-myproject.127.0.0.1.nip.io/connectors`
+  * `curl -X POST -H "Content-Type: application/json" --data '{ "name": "sink-test", "config": { "connector.class": "FileStreamSink", "tasks.max": "1", "topics": "my-topic", "file": "/tmp/test.sink.txt" } }' http://<my-connect-cluster-route-address>/connectors`
 * Check that the connector has been deployed and that it works:
-  * `curl http://my-connect-cluster-myproject.127.0.0.1.nip.io/connectors/sink-test/status`
-  * `curl http://my-connect-cluster-myproject.127.0.0.1.nip.io/connectors/sink-test/config`
-  * `curl http://my-connect-cluster-myproject.127.0.0.1.nip.io/connectors/sink-test/tasks/0/status`
+  * `curl http://<my-connect-cluster-route-address>/connectors/sink-test/status`
+  * `curl http://<my-connect-cluster-route-address>/connectors/sink-test/config`
+  * `curl http://<my-connect-cluster-route-address>/connectors/sink-test/tasks/0/status`
 * Try to deploy another connector which will fail:
-  * `curl -X POST -H "Content-Type: application/json" --data '{ "name": "sink-failing", "config": { "connector.class": "FileStreamSink", "tasks.max": "1", "topics": "my-topic", "file": "/root/this.will.not.work.txt" } }' http://my-connect-cluster-myproject.127.0.0.1.nip.io/connectors`
+  * `curl -X POST -H "Content-Type: application/json" --data '{ "name": "sink-failing", "config": { "connector.class": "FileStreamSink", "tasks.max": "1", "topics": "my-topic", "file": "/root/this.will.not.work.txt" } }' http://<my-connect-cluster-route-address>/connectors`
 * Check the state of the failing connector:
-  * `curl http://my-connect-cluster-myproject.127.0.0.1.nip.io/connectors/sink-failing/status`
-  * `curl http://my-connect-cluster-myproject.127.0.0.1.nip.io/connectors/sink-failing/tasks/0/status`
+  * `curl http://<my-connect-cluster-route-address>/connectors/sink-failing/status`
+  * `curl http://<my-connect-cluster-route-address>/connectors/sink-failing/tasks/0/status`
 
 ## Prometheus metrics
 
