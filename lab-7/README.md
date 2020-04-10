@@ -2,7 +2,7 @@
 
 * Deploy the source Kafka cluster
   * `oc apply -f mirror-maker/kafka-source.yaml`
-* Deploy the source Kafka cluster
+* Deploy the target Kafka cluster
   * `oc apply -f mirror-maker/kafka-target.yaml`
 * Wait for the deployments to be ready and check the pods
   * `oc get pods`
