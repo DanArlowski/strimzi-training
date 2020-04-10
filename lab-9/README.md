@@ -101,9 +101,9 @@ curl -X POST $BRIDGE/consumers/debezium-group \
     "name": "debezium-consumer",
     "format": "json",
     "auto.offset.reset": "earliest",
-    "enable.auto.commit": "false",
-    "fetch.min.bytes": "512",
-    "consumer.request.timeout.ms": "30000"
+    "enable.auto.commit": false,
+    "fetch.min.bytes": 512,
+    "consumer.request.timeout.ms": 30000
   }'
 ```
 * Subscribe to the Kafka topic where we get the messages for our MySQL Address book table
