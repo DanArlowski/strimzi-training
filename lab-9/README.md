@@ -34,9 +34,9 @@ curl -X POST $BRIDGE/consumers/my-group \
     "name": "consumer1",
     "format": "json",
     "auto.offset.reset": "earliest",
-    "enable.auto.commit": "false",
-    "fetch.min.bytes": "512",
-    "consumer.request.timeout.ms": "30000"
+    "enable.auto.commit": false,
+    "fetch.min.bytes": 512,
+    "consumer.request.timeout.ms": 30000
   }'
 ```
 
@@ -132,3 +132,4 @@ oc run kafka-consumer -ti --image=strimzi/kafka:0.12.1-kafka-2.2.1 --rm=true --r
   * `oc delete kafkaconnect my-connect-cluster`
   * `oc delete kafka my-cluster`
   * `oc delete all -l app=mysql`
+  * `oc delete kafkabridges my-bridge`
