@@ -9,10 +9,10 @@ spec:
       type: ephemeral
     resources:
       requests:
-        memory: 2Gi
+        memory: 1Gi
         cpu: 200m
       limits:
-        memory: 2Gi
+        memory: 1Gi
         cpu: 1000m
     listeners:
       plain: {}
