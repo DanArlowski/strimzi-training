@@ -16,16 +16,21 @@ roleRef:
   name: cluster-reader
   apiGroup: rbac.authorization.k8s.io
 ---
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: prometheus
+  labels:
+    app: prometheus
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      app: prometheus 
   template:
     metadata:
       labels:
-        name: prometheus
+        app: prometheus
     spec:
       serviceAccount: prometheus-server
       containers:
@@ -77,21 +82,22 @@ metadata:
   name: prometheus
 spec:
   ports:
-  - name: prometheus
-    port: 9090
-    targetPort: 9090
-    protocol: TCP
+    - port: 9090
+      targetPort: 9090
+      protocol: TCP
   selector:
-    name: prometheus
+    app: prometheus
   type: ClusterIP
 ---
 apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
+  matchLabels:
+    app: prometheus
   name: prometheus
 spec:
   port:
-    targetPort: prometheus
+    targetPort: 9090
   to:
     kind: Service
     name: prometheus
